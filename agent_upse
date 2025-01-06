@@ -1,0 +1,111 @@
+from langflow.load import run_flow_from_json
+TWEAKS = {
+  "ChatInput-ulxqd": {
+    "files": "",
+    "background_color": "",
+    "chat_icon": "",
+    "input_value": "plan for for UPSE",
+    "sender": "User",
+    "sender_name": "User",
+    "session_id": "",
+    "should_store_message": True,
+    "text_color": ""
+  },
+  "Agent-nV1sO": {
+    "add_current_date_tool": True,
+    "agent_description": "A helpful assistant with access to the following tools:",
+    "agent_llm": "Azure OpenAI",
+    "handle_parsing_errors": True,
+    "input_value": "",
+    "max_iterations": 15,
+    "n_messages": 100,
+    "order": "Ascending",
+    "sender": "Machine and User",
+    "sender_name": "",
+    "session_id": "",
+    "system_prompt": "You are a helpful assistant that can use tools to answer questions and perform tasks.",
+    "template": "{sender_name}: {text}",
+    "verbose": True,
+    "azure_endpoint": "https://techthops.openai.azure.com/",
+    "azure_deployment": "gpt-4o",
+    "api_key": "d8e53eae6a1a4ca196a0fdb524854558",
+    "api_version": "2024-10-01-preview",
+    "temperature": 0.7,
+    "max_tokens": None
+  },
+  "ChatOutput-L4YBU": {
+    "background_color": "",
+    "chat_icon": "",
+    "data_template": "{text}",
+    "input_value": "",
+    "sender": "Machine",
+    "sender_name": "AI",
+    "session_id": "",
+    "should_store_message": True,
+    "text_color": ""
+  },
+  "Prompt-uYR1s": {
+    "template": "You are an AI-powered UPSC (Union Public Service Commission) personal tutor designed to assist IAS (Indian Administrative Service) aspirants in their preparation. Your role is to provide both static and dynamic information to help students prepare for their exams effectively. You have access to a comprehensive study material database, which you should use to answer queries and provide guidance.\n\n\nWhen interacting with IAS aspirants, follow these guidelines:\n\n1. Always maintain a professional, supportive, and encouraging tone.\n2. Provide accurate and up-to-date information based on the study material database.\n3. If a query cannot be answered using the provided study material, politely inform the user and suggest related topics that might be helpful.\n4. Tailor your responses to the individual needs of the aspirant, considering their current knowledge level and areas of focus.\n5. Offer study strategies, time management tips, and exam preparation advice when appropriate.\n6. Encourage critical thinking and analytical skills by asking thought-provoking questions related to the topic at hand.\n\nWhen using the study material database:\n1. Search for relevant information that directly addresses the user's query.\n2. If multiple relevant sections exist, synthesize the information to provide a comprehensive answer.\n3. Always cite the specific section or page number from the study material when providing information.\n\nFormat your responses as follows:\n1. Begin with a brief greeting and acknowledgment of the user's query.\n2. Provide the main answer or explanation, citing relevant sections from the study material.\n3. Offer additional context or related information if applicable.\n4. Conclude with a suggestion for further study or a thought-provoking question to encourage deeper understanding.\n\nEthical considerations and limitations:\n1. Do not provide any information that is not contained within the study material database.\n2. Avoid making predictions about exam questions or offering unfair advantages.\n3. Encourage users to verify information from official UPSC sources and stay updated on any changes to the exam format or syllabus.\n4. If asked about personal opinions on sensitive topics, redirect the conversation to factual information from the study material.\n\n\n\nNow, please assist the IAS aspirant with their query:\n\n{USER_QUERY}\n\nIn your response  give proper {output}",
+    "USER_QUERY": "",
+    "output": ""
+  },
+  "File-ijNTf": {
+    "path": "UPSC-Daily-Current-Affairs-04-January-2025-PDF.pdf",
+    "concurrency_multithreading": 4,
+    "silent_errors": False,
+    "use_multithreading": False
+  },
+  "AzureOpenAIEmbeddings-P3obK": {
+    "api_key": "d8e53eae6a1a4ca196a0fdb524854558",
+    "api_version": "2023-08-01-preview",
+    "azure_deployment": "text-embedding-3-small",
+    "azure_endpoint": "https://techthops.openai.azure.com/",
+    "dimensions": None,
+    "model": "text-embedding-3-small"
+  },
+  "ParseData-oy63M": {
+    "sep": "\n",
+    "template": "{text}"
+  },
+  "SplitText-Iy8B7": {
+    "chunk_overlap": 200,
+    "chunk_size": 1000,
+    "separator": "\n"
+  },
+  "AstraDB-LL9kL": {
+    "advanced_search_filter": "{}",
+    "api_endpoint": "https://3b48ce15-d624-4c97-8c28-74a170d053c6-us-east-2.apps.astra.datastax.com",
+    "batch_size": None,
+    "bulk_delete_concurrency": None,
+    "bulk_insert_batch_concurrency": None,
+    "bulk_insert_overwrite_concurrency": None,
+    "collection_indexing_policy": "",
+    "collection_name": "upse_static_data_collection",
+    "embedding_choice": "Embedding Model",
+    "keyspace": "",
+    "metadata_indexing_exclude": "",
+    "metadata_indexing_include": "",
+    "metric": "cosine",
+    "number_of_results": 4,
+    "pre_delete_collection": False,
+    "search_filter": {},
+    "search_input": "",
+    "search_score_threshold": 0,
+    "search_type": "Similarity",
+    "setup_mode": "Sync",
+    "token": "ASTRA_DB_APPLICATION_TOKEN"
+  },
+  "DuckDuckGoSearch-kK15z": {
+    "input_value": "",
+    "max_results": 5,
+    "max_snippet_length": 100
+  },
+  "CustomComponent-5tI7d": {
+    "input_value": "Hello, World!"
+  }
+}
+
+result = run_flow_from_json(flow="upse .json",
+                            session_id="", # provide a session id if you want to use session state
+                            fallback_to_env_vars=True, # False by default
+                            tweaks=TWEAKS)
